@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torreox | Certificazione Studi Dentistici</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0f172a;
+  --secondary:#475569;
+  --accent:#0a0a0a;
+  --light:#f8fafc;
+  --border:#e2e8f0;
+  --black-btn: #000000;
+  --black-btn-hover: #1a1a1a;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+body{
+  background:#ffffff;
+  color:var(--primary);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+header{
+  position:sticky;
+  top:0;
+  background:#ffffff;
+  border-bottom:1px solid var(--border);
+  z-index:100;
+}
+.nav{
+  max-width:1200px;
+  margin:0 auto;
+  padding:1.2rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-weight:600;
+  letter-spacing:1px;
+  font-size:0.95rem;
+}
+.menu{
+  display:flex;
+  gap:2rem;
+  font-size:0.85rem;
+  color:var(--secondary);
+}
+.menu span{
+  cursor:pointer;
+  transition:0.2s;
+}
+.menu span:hover{
+  color:var(--primary);
+}
+/* MODALE */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  position: relative;
+}
+.modal-content h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+}
+.modal-content p {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary);
+}
+.modal-content .email {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #94a3b8;
+}
+.close:hover {
+  color: var(--primary);
+}
+.hero{
+  max-width:900px;
+  margin:120px auto 80px auto;
+  padding:0 2rem;
+  text-align:center;
+  animation:fadeIn 1.2s ease;
+}
+.hero h1{
+  font-size:2.4rem;
+  font-weight:600;
+  letter-spacing:-1px;
+  margin-bottom:1.5rem;
+}
+.search-box{
+  max-width:480px;
+  margin:0 auto;
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:40px;
+  overflow:hidden;
+  background:#fff;
+}
+.search-box input{
+  flex:1;
+  border:none;
+  padding:1rem 1.2rem;
+  font-size:0.95rem;
+  outline:none;
+}
+.search-box button{
+  background: var(--black-btn);
+  color:#fff;
+  border:none;
+  padding:0 1.6rem;
+  font-size:0.85rem;
+  cursor:pointer;
+  transition: background 0.25s ease;
+}
+.search-box button:hover{
+  background: var(--black-btn-hover);
+}
+.results{
+  margin-top:2rem;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.studio{
+  border:1px solid var(--border);
+  padding:1rem 1.5rem;
+  border-radius:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
+  background:#fff;
+}
+.studio:hover{
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  transform:translateY(-2px);
+}
+.studio button {
+  background: #111;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.studio button:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.section{
+  max-width:800px;
+  margin:100px auto;
+  padding:0 2rem;
+  text-align:center;
+}
+.section h2{
+  font-size:1.6rem;
+  font-weight:600;
+  margin-bottom:1.2rem;
+}
+.section p{
+  color:var(--secondary);
+}
+.inspection{
+  max-width:900px;
+  margin:0 auto 120px auto;
+  padding:0 2rem;
+}
+.inspection-grid{
+  margin-top:3rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+}
+.card{
+  border:1px solid var(--border);
+  padding:2rem;
+  border-radius:8px;
+  background:#fff;
+  transition:0.3s;
+}
+.card:hover{
+  box-shadow:0 15px 40px rgba(0,0,0,0.04);
+}
+.card h3{
+  font-size:1rem;
+  margin-bottom:0.6rem;
+}
+.card p{
+  font-size:0.9rem;
+  color:var(--secondary);
+}
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem;
+  text-align:center;
+  font-size:0.8rem;
+  color:var(--secondary);
+}
+
+/* COOKIE BANNER */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  padding: 1.2rem 2rem;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  z-index: 9999;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.92rem;
+  color: var(--secondary);
+}
+#cookie-banner p {
+  margin: 0;
+  flex: 1 1 70%;
+}
+#cookie-banner a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+#cookie-banner button {
+  background: var(--black-btn);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.25s ease;
+}
+#cookie-banner button:hover {
+  background: var(--black-btn-hover);
+}
+@media (max-width: 640px) {
+  #cookie-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.4rem;
+  }
+  #cookie-banner p {
+    flex: none;
+    margin-bottom: 0.8rem;
+  }
+}
+@media(max-width:768px){
+  .inspection-grid{
+    grid-template-columns:1fr;
+  }
+  .hero h1{
+    font-size:1.8rem;
+  }
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <p>
+    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento (nessun tracciamento, nessuna profilazione, nessun dato personale raccolto). 
+    Per saperne di più leggi la nostra 
+    <a href="https://tuo-dominio.it/privacy-policy.html" target="_blank">Informativa Privacy e Cookie</a>.
+  </p>
+  <button onclick="accettaCookie()">Ho capito</button>
+</div>
+
+<header>
+  <div class="nav">
+    <div class="logo">TORREOX</div>
+    <div class="menu">
+      <span onclick="openContactModal()">Contatti</span>
+    </div>
+  </div>
+</header>
+
+<!-- MODALE CONTATTI -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeContactModal()">×</span>
+    <h3>Contattaci</h3>
+    <p>Mandaci un'email a questo indirizzo:</p>
+    <p class="email">info@torreox.com</p>
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Trova uno studio dentistico certificato Torreox</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Cerca per città, provincia o nome studio...">
+    <button onclick="cercaStudio()">Cerca</button>
+  </div>
+  <div class="results" id="results"></div>
+</section>
+
+<section class="section">
+  <h2>La nostra missione</h2>
+  <p>
+    Purtroppo, molti studi dentistici e dentisti non rispettano le norme di igiene e le procedure professionali, rendendo difficile capire di chi fidarsi.
+    Tutti gli studi e i dentisti certificati da noi sono sottoposti a verifiche a sorpresa da parte del nostro team sotto copertura.
+    La certificazione resta riservata a studi selezionati, offrendo ai pazienti un parametro indipendente per una scelta più consapevole.
+  </p>
+</section>
+
+<section class="inspection">
+  <h2 style="text-align:center;">Cosa controlliamo con le ispezioni a sorpresa</h2>
+  <div class="inspection-grid">
+    <div class="card">
+      <h3>Pulizia e sterilizzazione</h3>
+      <p>Verifichiamo igiene generale dello studio, sterilizzazione strumenti e sanificazione superfici.</p>
+    </div>
+    <div class="card">
+      <h3>Titoli dei medici</h3>
+      <p>Controlliamo certificazioni, diplomi e aggiornamenti professionali.</p>
+    </div>
+    <div class="card">
+      <h3>Lavoro e procedure</h3>
+      <p>Verifichiamo che diagnosi e trattamenti siano eseguiti correttamente e secondo standard professionali.</p>
+    </div>
+    <div class="card">
+      <h3>Accoglienza</h3>
+      <p>Valutiamo professionalità dello staff e gestione del paziente.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Torreox. Tutti i diritti riservati.
+</footer>
+
+<script>
+// --------------------- GESTIONE COOKIE BANNER (sicura contro sandbox) ---------------------
+function canAccessCookies() {
+  try {
+    return typeof document !== 'undefined' && !!document.cookie;
+  } catch (e) {
+    return false;
+  }
+}
+
+function setCookie(name, value, days) {
+  if (!canAccessCookies()) return;
+
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  try {
+    document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+  } catch (e) {
+    console.warn("Impossibile impostare cookie:", e.message);
+  }
+}
+
+function getCookie(name) {
+  if (!canAccessCookies()) return null;
+
+  try {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+  } catch (e) {
+    console.warn("Impossibile leggere cookie:", e.message);
+  }
+  return null;
+}
+
+function accettaCookie() {
+  setCookie("cookie_accepted", "1", 180);
+  const banner = document.getElementById("cookie-banner");
+  if (banner) banner.style.display = "none";
+}
+
+window.addEventListener("load", function() {
+  const banner = document.getElementById("cookie-banner");
+  if (!banner) return;
+
+  if (canAccessCookies() && getCookie("cookie_accepted")) {
+    banner.style.display = "none";
+  } else {
+    banner.style.display = "flex";
+  }
+});
+
+// --------------------- LISTA STUDI CERTIFICATI ---------------------
+const studiCertificati = [
+  { nome: "Studio Dentistico Rossi",         città: "Milano",     provincia: "MI" },
+  { nome: "Studio Verdi Dental",             città: "Torino",     provincia: "TO" },
+  { nome: "Clinica Dentale Neri",            città: "Firenze",    provincia: "FI" },
+  { nome: "Dental Care Bianchi",             città: "Brescia",    provincia: "BS" },
+  { nome: "Studio Odontoiatrico Esposito",   città: "Napoli",     provincia: "NA" },
+  { nome: "Centro Dentistico Moderno",       città: "Roma",       provincia: "RM" },
+  { nome: "Smile Clinic Padova",             città: "Padova",     provincia: "PD" },
+  { nome: "Studio Dentistico Lombardo",      città: "Bergamo",    provincia: "BG" },
+  { nome: "Dental Excellence",               città: "Bologna",    provincia: "BO" },
+  { nome: "Clinica Sorriso Venezia",         città: "Venezia",    provincia: "VE" },
+];
+
+// Mappa province per ricerca estesa
+const provinceNomi = {
+  "mi": "milano", "to": "torino", "fi": "firenze", "bs": "brescia",
+  "na": "napoli", "rm": "roma",   "pd": "padova",  "bg": "bergamo",
+  "bo": "bologna","ve": "venezia","ge": "genova",  "ba": "bari",
+  "pa": "palermo","ct": "catania","ca": "cagliari","tn": "trento",
+};
+
+// --------------------- RICERCA STUDI ---------------------
+function cercaStudio() {
+  const input = document.getElementById('searchInput').value.toLowerCase().trim();
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = '';
+
+  if (!input) {
+    resultsDiv.innerHTML = '<p style="color:#64748b; text-align:center;">Inserisci città, provincia o nome studio per cercare.</p>';
+    return;
+  }
+
+  const risultati = studiCertificati.filter(s => {
+    const nomeLower   = s.nome.toLowerCase();
+    const cittaLower  = s.città.toLowerCase();
+    const provLower   = s.provincia.toLowerCase();
+    const provNomeEst = provinceNomi[provLower] || '';
+
+    return (
+      nomeLower.includes(input) ||
+      cittaLower.includes(input) ||
+      provLower === input ||
+      provNomeEst.includes(input)
+    );
+  });
+
+  if (risultati.length === 0) {
+    resultsDiv.innerHTML = `<p style="color:#64748b; text-align:center;">Nessuno studio trovato per "${input}"</p>`;
+    return;
+  }
+
+  risultati.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'studio';
+    div.innerHTML = `
+      <div>
+        <strong>${s.nome}</strong><br>
+        <span style="font-size:0.85rem; color:#64748b;">
+          ${s.città} (${s.provincia})
+        </span>
+      </div>
+      <button onclick="window.open('https://www.google.com/search?q=${encodeURIComponent(s.nome + ' ' + s.città + ' ' + s.provincia)}','_blank')">
+        Visualizza
+      </button>
+    `;
+    resultsDiv.appendChild(div);
+  });
+}
+
+// --------------------- MODALE CONTATTI ---------------------
+function openContactModal() {
+  document.getElementById('contactModal').style.display = 'flex';
+}
+
+function closeContactModal() {
+  document.getElementById('contactModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('contactModal');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>
